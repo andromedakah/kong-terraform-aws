@@ -2,6 +2,7 @@
 variable "vpc_id" {
   description = "VPC ID for the AWS account and region specified"
   type        = string
+  default = "vpc-0ab9f0f33d3efc1d7"
 }
 
 variable "subnet_tag" {
@@ -121,13 +122,13 @@ variable "description" {
 variable "environment" {
   description = "Resource environment tag (i.e. dev, stage, prod)"
   type        = string
+  default = "test"
 }
 
 variable "service" {
   description = "Resource service tag"
   type        = string
-
-  default = "kong"
+  default = "kong-gateway"
 }
 
 # Additional tags
@@ -166,7 +167,7 @@ variable "ec2_ami" {
     us-west-1    = "ami-07b69f5dcdbb4abaf"
     us-west-2    = "ami-028b81a9f357b2b96"
     eu-central-1 = "ami-0cbcfdbe2416ea8df"
-    eu-west-1    = "ami-0eb00845cbc30b475"
+    eu-west-3   = "ami-00c71bd4d220aa22a"
   }
 }
 
@@ -247,14 +248,14 @@ variable "enable_external_lb" {
   description = "Boolean to enable/create the external load balancer, exposing Kong to the Internet"
   type        = string
 
-  default = true
+  default = false
 }
 
 variable "enable_internal_lb" {
   description = "Boolean to enable/create the internal load balancer for the forward proxy"
   type        = string
 
-  default = true
+  default = false
 }
 
 variable "deregistration_delay" {
@@ -466,47 +467,47 @@ variable "db_backup_retention_period" {
 }
 
 # Redis settings (for rate_limiting only)
-variable "enable_redis" {
-  description = "Boolean to enable redis AWS resource"
-  type        = string
+# variable "enable_redis" {
+#   description = "Boolean to enable redis AWS resource"
+#   type        = string
 
-  default = false
-}
+#   default = false
+# }
 
-variable "redis_instance_type" {
-  description = "Redis node instance type"
-  type        = string
+# variable "redis_instance_type" {
+#   description = "Redis node instance type"
+#   type        = string
 
-  default = "cache.t2.small"
-}
+#   default = "cache.t2.small"
+# }
 
-variable "redis_engine_version" {
-  description = "Redis engine version"
-  type        = string
+# variable "redis_engine_version" {
+#   description = "Redis engine version"
+#   type        = string
 
-  default = "5.0.5"
-}
+#   default = "5.0.5"
+# }
 
-variable "redis_family" {
-  description = "Redis parameter group family"
-  type        = string
+# variable "redis_family" {
+#   description = "Redis parameter group family"
+#   type        = string
 
-  default = "redis5.0"
-}
+#   default = "redis5.0"
+# }
 
-variable "redis_instance_count" {
-  description = "Number of redis nodes"
-  type        = string
+# variable "redis_instance_count" {
+#   description = "Number of redis nodes"
+#   type        = string
 
-  default = 2
-}
+#   default = 2
+# }
 
-variable "redis_subnets" {
-  description = "Redis cluster subnet group name"
-  type        = string
+# variable "redis_subnets" {
+#   description = "Redis cluster subnet group name"
+#   type        = string
 
-  default = "cache-subnets"
-}
+#   default = "cache-subnets"
+# }
 
 variable "deck_version" {
   description = "Version of decK to install"

@@ -33,6 +33,7 @@ data "aws_iam_policy_document" "kong" {
   }
 }
 
+# TO BE ACTIVATED LATER
 resource "aws_iam_role" "kong" {
   name               = format("%s-%s", var.service, var.environment)
   assume_role_policy = data.aws_iam_policy_document.kong.json

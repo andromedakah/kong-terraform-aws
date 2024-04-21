@@ -1,3 +1,4 @@
+# to be activated later 
 # PostgreSQL security group
 resource "aws_security_group" "postgresql" {
   description = "Kong RDS instance"
@@ -38,44 +39,45 @@ resource "aws_security_group_rule" "postgresql-ingress-bastion" {
 }
 
 # Redis security group
-resource "aws_security_group" "redis" {
-  description = "Kong redis cluster"
-  name        = format("%s-%s-redis", var.service, var.environment)
-  vpc_id      = data.aws_vpc.vpc.id
+# resource "aws_security_group" "redis" {
+#   description = "Kong redis cluster"
+#   name        = format("%s-%s-redis", var.service, var.environment)
+#   vpc_id      = data.aws_vpc.vpc.id
 
-  tags = merge(
-    {
-      "Name"        = format("%s-%s-redis", var.service, var.environment),
-      "Environment" = var.environment,
-      "Description" = var.description,
-      "Service"     = var.service,
-    },
-    var.tags
-  )
-}
+#   tags = merge(
+#     {
+#       "Name"        = format("%s-%s-redis", var.service, var.environment),
+#       "Environment" = var.environment,
+#       "Description" = var.description,
+#       "Service"     = var.service,
+#     },
+#     var.tags
+#   )
+# }
 
-resource "aws_security_group_rule" "redis-ingress-kong" {
-  security_group_id = aws_security_group.redis.id
+# resource "aws_security_group_rule" "redis-ingress-kong" {
+#   security_group_id = aws_security_group.redis.id
 
-  type      = "ingress"
-  from_port = 6379
-  to_port   = 6379
-  protocol  = "tcp"
+#   type      = "ingress"
+#   from_port = 6379
+#   to_port   = 6379
+#   protocol  = "tcp"
 
-  source_security_group_id = aws_security_group.kong.id
-}
+#   source_security_group_id = aws_security_group.kong.id
+# }
 
-resource "aws_security_group_rule" "redis-ingress-bastion" {
-  security_group_id = aws_security_group.redis.id
+# resource "aws_security_group_rule" "redis-ingress-bastion" {
+#   security_group_id = aws_security_group.redis.id
 
-  type      = "ingress"
-  from_port = 6379
-  to_port   = 6379
-  protocol  = "tcp"
+#   type      = "ingress"
+#   from_port = 6379
+#   to_port   = 6379
+#   protocol  = "tcp"
 
-  cidr_blocks = var.bastion_cidr_blocks
-}
+#   cidr_blocks = var.bastion_cidr_blocks
+# }
 
+# to be activated later
 # Kong node security group and rules
 resource "aws_security_group" "kong" {
   description = "Kong EC2 instances"
@@ -213,6 +215,7 @@ resource "aws_security_group_rule" "kong-egress-https" {
   cidr_blocks = ["0.0.0.0/0"]
 }
 
+# to be activated later ******
 # Load balancers
 # External
 resource "aws_security_group" "external-lb" {

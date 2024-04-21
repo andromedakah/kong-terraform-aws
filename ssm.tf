@@ -12,6 +12,7 @@ resource "aws_kms_key" "kong" {
   )
 }
 
+# to be activated later***********************
 resource "aws_kms_alias" "kong" {
   name          = format("alias/%s-%s", var.service, var.environment)
   target_key_id = aws_kms_key.kong.key_id
@@ -46,50 +47,51 @@ resource "aws_ssm_parameter" "db-host" {
   type = "String"
   value = coalesce(
     join("", aws_db_instance.kong.*.address),
-    join("", aws_rds_cluster.kong.*.endpoint),
+    # join("", aws_rds_cluster.kong.*.endpoint),
     "none"
   )
 }
 
-resource "aws_ssm_parameter" "db-name" {
-  name  = format("/%s/%s/db/name", var.service, var.environment)
-  type  = "String"
-  value = replace(format("%s_%s", var.service, var.environment), "-", "_")
-}
+# TO BE ACTIVATED LATER ***************
+# resource "aws_ssm_parameter" "db-name" {
+#   name  = format("/%s/%s/db/name", var.service, var.environment)
+#   type  = "String"
+#   value = replace(format("%s_%s", var.service, var.environment), "-", "_")
+# }
 
-resource "aws_ssm_parameter" "db-password" {
-  name  = format("/%s/%s/db/password", var.service, var.environment)
-  type  = "SecureString"
-  value = random_string.db_password.result
+# resource "aws_ssm_parameter" "db-password" {
+#   name  = format("/%s/%s/db/password", var.service, var.environment)
+#   type  = "SecureString"
+#   value = random_string.db_password.result
 
-  key_id = aws_kms_alias.kong.target_key_arn
+#   key_id = aws_kms_alias.kong.target_key_arn
 
-  lifecycle {
-    ignore_changes = [value]
-  }
+#   lifecycle {
+#     ignore_changes = [value]
+#   }
 
-  overwrite = true
-}
+#   overwrite = true
+# }
 
-resource "aws_ssm_parameter" "db-master-password" {
-  name  = format("/%s/%s/db/password/master", var.service, var.environment)
-  type  = "SecureString"
-  value = random_string.master_password.result
+# resource "aws_ssm_parameter" "db-master-password" {
+#   name  = format("/%s/%s/db/password/master", var.service, var.environment)
+#   type  = "SecureString"
+#   value = random_string.master_password.result
 
-  key_id = aws_kms_alias.kong.target_key_arn
+#   key_id = aws_kms_alias.kong.target_key_arn
 
-  lifecycle {
-    ignore_changes = [value]
-  }
+#   lifecycle {
+#     ignore_changes = [value]
+#   }
 
-  overwrite = true
-}
+#   overwrite = true
+# }
 
-resource "aws_ssm_parameter" "redis-primary-endpoint" {
-  name = format("/%s/%s/redis/primary-endpoint", var.service, var.environment)
-  type = "String"
-  value = coalesce(
-    join("", aws_elasticache_replication_group.kong.*.primary_endpoint_address),
-    "none"
-  )
-}
+# resource "aws_ssm_parameter" "redis-primary-endpoint" {
+#   name = format("/%s/%s/redis/primary-endpoint", var.service, var.environment)
+#   type = "String"
+#   value = coalesce(
+#     join("", aws_elasticache_replication_group.kong.*.primary_endpoint_address),
+#     "none"
+#   )
+# }
