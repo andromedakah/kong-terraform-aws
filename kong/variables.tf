@@ -372,7 +372,7 @@ variable "db_engine_version" {
   description = "Database engine version"
   type        = string
 
-  default = "11.14"
+  default = "16.1"
 }
 
 variable "db_engine_mode" {
@@ -386,14 +386,14 @@ variable "db_family" {
   description = "Database parameter group family"
   type        = string
 
-  default = "postgres11"
+  default = "postgres16"
 }
 
 variable "db_instance_class" {
   description = "Database instance class"
   type        = string
 
-  default = "db.t2.micro"
+  default = "db.r6g.large"
 }
 
 variable "db_instance_count" {

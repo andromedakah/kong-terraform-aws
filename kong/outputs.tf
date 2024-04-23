@@ -1,7 +1,7 @@
-output "rds_endpoint" {
-  value       = coalesce(aws_rds_cluster.kong.*.endpoint)
-  description = "The endpoint for the Kong database"
-}
+# output "rds_endpoint" {
+#   value       = coalesce(aws_rds_cluster.kong.*.endpoint)
+#   description = "The endpoint for the Kong database"
+# }
 
 output "rds_password" {
   sensitive   = true
