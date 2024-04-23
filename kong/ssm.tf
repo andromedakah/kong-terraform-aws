@@ -46,7 +46,7 @@ resource "aws_ssm_parameter" "db-host" {
   type = "String"
   value = coalesce(
     join("", aws_db_instance.kong.*.address),
-    join("", aws_rds_cluster.kong.*.endpoint),
+    # join("", aws_rds_cluster.kong.*.endpoint),
     "none"
   )
 }
