@@ -6,7 +6,7 @@ provider "aws" {
 module "kong" {
   source = "github.com/andromedakah/kong-terraform-aws?ref=3.7"
 
-  vpc_id                = "vpc-0ab9f0f33d3efc1d7"
+  vpc_id                = "vpc-04875e1f18d424767"
   environment           = "test"
   service               = "kong-gateway"
   ec2_key_name          = ""
@@ -17,7 +17,7 @@ module "kong" {
   ssl_cert_portal       = "*.kong-cx.com"
 
   ec2_ami= {
-    "eu-west-3" = "ami-00c71bd4d220aa22a"
+    "eu-west-3" = "ami-01bf5e7ea6da0b6e1"
   }
 
   tags = {
