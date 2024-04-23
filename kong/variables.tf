@@ -2,6 +2,7 @@
 variable "vpc_id" {
   description = "VPC ID for the AWS account and region specified"
   type        = string
+  default = "vpc-04875e1f18d424767"
 }
 
 variable "subnet_tag" {
@@ -121,13 +122,14 @@ variable "description" {
 variable "environment" {
   description = "Resource environment tag (i.e. dev, stage, prod)"
   type        = string
+  default = "test"
 }
 
 variable "service" {
   description = "Resource service tag"
   type        = string
 
-  default = "kong"
+  default = "kong-gateway"
 }
 
 # Additional tags
@@ -166,7 +168,7 @@ variable "ec2_ami" {
     us-west-1    = "ami-07b69f5dcdbb4abaf"
     us-west-2    = "ami-028b81a9f357b2b96"
     eu-central-1 = "ami-0cbcfdbe2416ea8df"
-    eu-west-1    = "ami-0eb00845cbc30b475"
+    eu-west-3    = "ami-01bf5e7ea6da0b6e1"
   }
 }
 
@@ -463,49 +465,6 @@ variable "db_backup_retention_period" {
   type        = string
 
   default = 7
-}
-
-# Redis settings (for rate_limiting only)
-variable "enable_redis" {
-  description = "Boolean to enable redis AWS resource"
-  type        = string
-
-  default = false
-}
-
-variable "redis_instance_type" {
-  description = "Redis node instance type"
-  type        = string
-
-  default = "cache.t2.small"
-}
-
-variable "redis_engine_version" {
-  description = "Redis engine version"
-  type        = string
-
-  default = "5.0.5"
-}
-
-variable "redis_family" {
-  description = "Redis parameter group family"
-  type        = string
-
-  default = "redis5.0"
-}
-
-variable "redis_instance_count" {
-  description = "Number of redis nodes"
-  type        = string
-
-  default = 2
-}
-
-variable "redis_subnets" {
-  description = "Redis cluster subnet group name"
-  type        = string
-
-  default = "cache-subnets"
 }
 
 variable "deck_version" {
