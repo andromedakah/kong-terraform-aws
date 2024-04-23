@@ -84,12 +84,3 @@ resource "aws_ssm_parameter" "db-master-password" {
 
   overwrite = true
 }
-
-resource "aws_ssm_parameter" "redis-primary-endpoint" {
-  name = format("/%s/%s/redis/primary-endpoint", var.service, var.environment)
-  type = "String"
-  value = coalesce(
-    join("", aws_elasticache_replication_group.kong.*.primary_endpoint_address),
-    "none"
-  )
-}
