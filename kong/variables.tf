@@ -325,31 +325,31 @@ variable "idle_timeout" {
 variable "ssl_cert_external" {
   description = "SSL certificate domain name for the external Kong Proxy HTTPS listener"
   type        = string
-  default     = null
+  default     = "*.kong-cx.com"
 }
 
 variable "ssl_cert_internal" {
   description = "SSL certificate domain name for the internal Kong Proxy HTTPS listener"
   type        = string
-  default     = null
+  default     = "*.kong-cx.com"
 }
 
 variable "ssl_cert_admin" {
   description = "SSL certificate domain name for the Kong Admin API HTTPS listener"
   type        = string
-  default     = null
+  default     = "*.kong-cx.com"
 }
 
 variable "ssl_cert_manager" {
   description = "SSL certificate domain name for the Kong Manager HTTPS listener"
   type        = string
-  default     = null
+  default     = "*.kong-cx.com"
 }
 
 variable "ssl_cert_portal" {
   description = "SSL certificate domain name for the Dev Portal listener"
   type        = string
-  default     = null
+  default     = "*.kong-cx.com"
 }
 
 variable "ssl_policy" {
