@@ -359,27 +359,6 @@ variable "ssl_policy" {
   default = "ELBSecurityPolicy-TLS-1-2-2017-01"
 }
 
-# Cloudwatch alarms
-variable "cloudwatch_actions" {
-  description = "List of cloudwatch actions for Alert/Ok"
-  type        = list(string)
-
-  default = []
-}
-
-variable "http_4xx_count" {
-  description = "HTTP Code 4xx count threshhold"
-  type        = string
-
-  default = 50
-}
-
-variable "http_5xx_count" {
-  description = "HTTP Code 5xx count threshhold"
-  type        = string
-
-  default = 50
-}
 
 # Datastore settings
 variable "enable_aurora" {
